@@ -42,3 +42,9 @@ variable "recovery_window_aws_secret" {
   type        = number
   description = "Number of days that AWS Secrets Manager waits before it can delete the secret. This value can be 0 to force deletion without recovery or range from 7 to 30 days."
 }
+
+variable "create_namespace" {
+  type = string
+  description = "Set it to true to create given namespace"
+  default = true
+}
