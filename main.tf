@@ -19,6 +19,7 @@ EOF
 }
 
 resource "kubernetes_namespace" "redis" {
+  count = var.create_namespace ? 1 : 0
   metadata {
     annotations = {}
 
