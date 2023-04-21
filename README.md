@@ -9,18 +9,18 @@
 ```hcl
 module "redis" {
   source                     = "../../"
-  enable_grafana_monitoring  = true
-  recovery_window_aws_secret = 30
   redis_config = {
-    name                = local.name
-    environment         = local.environment
-    master_volume_size  = "10Gi"
-    architecture        = "replication"
-    slave_replica_count = 3
-    slave_volume_size   = "10Gi"
-    storage_class_name  = "gp2"
+    name                = "skaf"
     values_yaml         = ""
+    environment         = "prod"
+    architecture        = "replication"
+    storage_class_name  = "gp2"
+    slave_volume_size   = "10Gi"
+    slave_replica_count = 3
+    master_volume_size  = "10Gi"  
   }
+  grafana_monitoring_enabled  = true
+  recovery_window_aws_secret = 0
 }
 
 ```
@@ -72,7 +72,8 @@ No modules.
 |------|-------------|------|---------|:--------:|
 | <a name="input_app_version"></a> [app\_version](#input\_app\_version) | Enter app version of application | `string` | `"6.2.7-debian-11-r11"` | no |
 | <a name="input_chart_version"></a> [chart\_version](#input\_chart\_version) | Enter chart version of application | `string` | `"16.13.2"` | no |
-| <a name="input_enable_grafana_monitoring"></a> [enable\_grafana\_monitoring](#input\_enable\_grafana\_monitoring) | Set true to deploy redis exporter to get metrics in grafana | `bool` | `false` | no |
+| <a name="input_create_namespace"></a> [create\_namespace](#input\_create\_namespace) | Set it to true to create given namespace | `string` | `true` | no |
+| <a name="input_grafana_monitoring_enabled"></a> [grafana\_monitoring\_enabled](#input\_grafana\_monitoring\_enabled) | Set true to deploy redis exporter to get metrics in grafana | `bool` | `false` | no |
 | <a name="input_namespace"></a> [namespace](#input\_namespace) | Enter namespace name | `string` | `"redis"` | no |
 | <a name="input_recovery_window_aws_secret"></a> [recovery\_window\_aws\_secret](#input\_recovery\_window\_aws\_secret) | Number of days that AWS Secrets Manager waits before it can delete the secret. This value can be 0 to force deletion without recovery or range from 7 to 30 days. | `number` | `0` | no |
 | <a name="input_redis_config"></a> [redis\_config](#input\_redis\_config) | Redis configurations | `any` | <pre>{<br>  "architecture": "replication",<br>  "environment": "",<br>  "master_volume_size": "",<br>  "name": "",<br>  "slave_replica_count": 1,<br>  "slave_volume_size": "",<br>  "storage_class_name": "",<br>  "values_yaml": ""<br>}</pre> | no |
