@@ -22,9 +22,9 @@ The Policy required to deploy this module:
                 "secretsmanager:CreateSecret",
                 "secretsmanager:DeleteSecret",
                 "secretsmanager:DescribeSecret",
-                "secretsmanager:GetResourcePolicy",
                 "secretsmanager:GetSecretValue",
-                "secretsmanager:PutSecretValue"
+                "secretsmanager:PutSecretValue",
+                "secretsmanager:GetResourcePolicy"
             ],
             "Resource": [
                 "*"

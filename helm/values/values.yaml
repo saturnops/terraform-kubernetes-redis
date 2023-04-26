@@ -174,7 +174,8 @@ master:
   ##  - "--maxmemory-policy volatile-ttl"
   ##  - "--repl-backlog-size 1024mb"
   ##
-  extraFlags: []
+  extraFlags: 
+    - "--maxmemory 1024mb"
   ## @param master.extraEnvVars Array with extra environment variables to add to Redis&reg; master nodes
   ## e.g:
   ## extraEnvVars:
@@ -546,7 +547,8 @@ replica:
   ##  - "--maxmemory-policy volatile-ttl"
   ##  - "--repl-backlog-size 1024mb"
   ##
-  extraFlags: []
+  extraFlags: 
+    - "--maxmemory 1024mb"
   ## @param replica.extraEnvVars Array with extra environment variables to add to Redis&reg; replicas nodes
   ## e.g:
   ## extraEnvVars:

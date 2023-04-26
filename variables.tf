@@ -31,7 +31,7 @@ variable "namespace" {
   description = "Enter namespace name"
 }
 
-variable "enable_grafana_monitoring" {
+variable "grafana_monitoring_enabled" {
   type        = bool
   default     = false
   description = "Set true to deploy redis exporter to get metrics in grafana"
@@ -44,7 +44,7 @@ variable "recovery_window_aws_secret" {
 }
 
 variable "create_namespace" {
-  type = string
+  type        = string
   description = "Set it to true to create given namespace"
-  default = true
+  default     = true
 }

@@ -5,17 +5,17 @@ locals {
 }
 
 module "redis" {
-  source                     = "../../"
-  enable_grafana_monitoring  = true
-  recovery_window_aws_secret = 30
+  source = "../../"
   redis_config = {
     name                = local.name
-    environment         = local.environment
-    master_volume_size  = "10Gi"
-    architecture        = "replication"
-    slave_replica_count = 3
-    slave_volume_size   = "10Gi"
-    storage_class_name  = "gp2"
     values_yaml         = file("./helm/values.yaml")
+    environment         = local.environment
+    architecture        = "replication"
+    slave_volume_size   = "10Gi"
+    master_volume_size  = "10Gi"
+    storage_class_name  = "gp2"
+    slave_replica_count = 2
   }
+  grafana_monitoring_enabled = true
+  recovery_window_aws_secret = 0
 }

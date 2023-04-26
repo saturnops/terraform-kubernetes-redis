@@ -22,30 +22,28 @@ resource "kubernetes_namespace" "redis" {
   count = var.create_namespace ? 1 : 0
   metadata {
     annotations = {}
-
-    name = var.namespace
+    name        = var.namespace
   }
 }
 
 resource "helm_release" "redis" {
   depends_on = [kubernetes_namespace.redis]
   name       = "redis"
-  repository = "https://charts.bitnami.com/bitnami"
   chart      = "redis"
-  namespace  = var.namespace
   version    = var.chart_version
   timeout    = 600
-
+  namespace  = var.namespace
+  repository = "https://charts.bitnami.com/bitnami"
   values = [
     templatefile("${path.module}/helm/values/values.yaml", {
       app_version              = var.app_version,
-      redis_password           = random_password.redis_password.result,
-      redis_master_volume_size = var.redis_config.master_volume_size,
       architecture             = var.redis_config.architecture,
-      slave_replicacount       = var.redis_config.slave_replica_count,
+      redis_password           = random_password.redis_password.result,
       slave_volume_size        = var.redis_config.slave_volume_size,
-      redis_exporter_enabled   = var.enable_grafana_monitoring,
-      storage_class_name       = var.redis_config.storage_class_name
+      slave_replicacount       = var.redis_config.slave_replica_count,
+      storage_class_name       = var.redis_config.storage_class_name,
+      redis_exporter_enabled   = var.grafana_monitoring_enabled,
+      redis_master_volume_size = var.redis_config.master_volume_size
     }),
     var.redis_config.values_yaml
   ]
