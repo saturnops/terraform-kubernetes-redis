@@ -3,9 +3,9 @@
 
 
 <br>
-The module allows users to customize the deployment by providing various input variables. Users can specify the name and environment of the Redis deployment, the chart and app version, the namespace in which the Redis deployment will be created, and whether to enable Grafana monitoring. The module also allows users to set the recovery window for the AWS Secrets Manager that is used to store the Redis password.
-
-The module creates a Redis master and one or more Redis slaves, depending on the specified architecture. The module creates Kubernetes services for the Redis master and slave deployments, and exposes these services as endpoints that can be used to connect to the Redis database. Users can retrieve these endpoints using the module's outputs. <br>
+This module allows users to customize the deployment by providing various input variables. Users can specify the name and environment of the Redis deployment, the chart and app version, the namespace in which the Redis deployment will be created, and whether to enable Grafana monitoring. The module also allows users to set the recovery window for the AWS Secrets Manager that is used to store the Redis password.
+<br>
+This module creates a Redis <strong>master</strong> and one or more Redis <strong>slaves</strong>, based on the specified architecture. It sets up Kubernetes services for the Redis master and slave deployments and exposes these services as <strong>endpoints</strong> for connecting to the Redis database. Users can retrieve these endpoints using the module's outputs. <br>
 
 ## Usage Example
 
