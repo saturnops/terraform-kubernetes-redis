@@ -3,23 +3,26 @@
 
 
 <br>
+The module allows users to customize the deployment by providing various input variables. Users can specify the name and environment of the Redis deployment, the chart and app version, the namespace in which the Redis deployment will be created, and whether to enable Grafana monitoring. The module also allows users to set the recovery window for the AWS Secrets Manager that is used to store the Redis password.
+
+The module creates a Redis master and one or more Redis slaves, depending on the specified architecture. The module creates Kubernetes services for the Redis master and slave deployments, and exposes these services as endpoints that can be used to connect to the Redis database. Users can retrieve these endpoints using the module's outputs. <br>
 
 ## Usage Example
 
 ```hcl
 module "redis" {
-  source                     = "../../"
+  source                = "https://github.com/sq-ia/terraform-kubernetes-redis.git"
   redis_config = {
-    name                = "skaf"
+    name                = "redis"
     values_yaml         = ""
     environment         = "prod"
     architecture        = "replication"
-    storage_class_name  = "gp2"
     slave_volume_size   = "10Gi"
-    slave_replica_count = 3
-    master_volume_size  = "10Gi"  
+    master_volume_size  = "10Gi"
+    storage_class_name  = "gp2"
+    slave_replica_count = 2
   }
-  grafana_monitoring_enabled  = true
+  grafana_monitoring_enabled = true
   recovery_window_aws_secret = 0
 }
 
@@ -70,21 +73,21 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_app_version"></a> [app\_version](#input\_app\_version) | Enter app version of application | `string` | `"6.2.7-debian-11-r11"` | no |
-| <a name="input_chart_version"></a> [chart\_version](#input\_chart\_version) | Enter chart version of application | `string` | `"16.13.2"` | no |
-| <a name="input_create_namespace"></a> [create\_namespace](#input\_create\_namespace) | Set it to true to create given namespace | `string` | `true` | no |
-| <a name="input_grafana_monitoring_enabled"></a> [grafana\_monitoring\_enabled](#input\_grafana\_monitoring\_enabled) | Set true to deploy redis exporter to get metrics in grafana | `bool` | `false` | no |
-| <a name="input_namespace"></a> [namespace](#input\_namespace) | Enter namespace name | `string` | `"redis"` | no |
-| <a name="input_recovery_window_aws_secret"></a> [recovery\_window\_aws\_secret](#input\_recovery\_window\_aws\_secret) | Number of days that AWS Secrets Manager waits before it can delete the secret. This value can be 0 to force deletion without recovery or range from 7 to 30 days. | `number` | `0` | no |
-| <a name="input_redis_config"></a> [redis\_config](#input\_redis\_config) | Redis configurations | `any` | <pre>{<br>  "architecture": "replication",<br>  "environment": "",<br>  "master_volume_size": "",<br>  "name": "",<br>  "slave_replica_count": 1,<br>  "slave_volume_size": "",<br>  "storage_class_name": "",<br>  "values_yaml": ""<br>}</pre> | no |
+| <a name="input_app_version"></a> [app\_version](#input\_app\_version) | Version of the Redis application that will be deployed. | `string` | `"6.2.7-debian-11-r11"` | no |
+| <a name="input_chart_version"></a> [chart\_version](#input\_chart\_version) | Version of the chart for the Redis application that will be deployed. | `string` | `"16.13.2"` | no |
+| <a name="input_create_namespace"></a> [create\_namespace](#input\_create\_namespace) | Specify whether or not to create the namespace if it does not already exist. Set it to true to create the namespace. | `string` | `true` | no |
+| <a name="input_grafana_monitoring_enabled"></a> [grafana\_monitoring\_enabled](#input\_grafana\_monitoring\_enabled) | Specify whether or not to deploy Redis exporter to collect Redis metrics for monitoring in Grafana. | `bool` | `false` | no |
+| <a name="input_namespace"></a> [namespace](#input\_namespace) | Namespace where the Redis resources will be deployed. | `string` | `"redis"` | no |
+| <a name="input_recovery_window_aws_secret"></a> [recovery\_window\_aws\_secret](#input\_recovery\_window\_aws\_secret) | Number of days that AWS Secrets Manager will wait before it can delete the secret. The value can be 0 to force deletion without recovery, or a range from 7 to 30 days. | `number` | `0` | no |
+| <a name="input_redis_config"></a> [redis\_config](#input\_redis\_config) | Specify the configuration settings for Redis, including the name, environment, storage options, replication settings, and custom YAML values. | `any` | <pre>{<br>  "architecture": "replication",<br>  "environment": "",<br>  "master_volume_size": "",<br>  "name": "",<br>  "slave_replica_count": 1,<br>  "slave_volume_size": "",<br>  "storage_class_name": "",<br>  "values_yaml": ""<br>}</pre> | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| <a name="output_redis_master_endpoint"></a> [redis\_master\_endpoint](#output\_redis\_master\_endpoint) | Redis master pod connection endpoint |
-| <a name="output_redis_port"></a> [redis\_port](#output\_redis\_port) | Redis port |
-| <a name="output_redis_slave_endpoint"></a> [redis\_slave\_endpoint](#output\_redis\_slave\_endpoint) | Redis slave pod connection endpoint |
+| <a name="output_redis_master_endpoint"></a> [redis\_master\_endpoint](#output\_redis\_master\_endpoint) | The endpoint for the Redis Master Service, which is the primary node in the Redis cluster responsible for handling read-write operations. |
+| <a name="output_redis_port"></a> [redis\_port](#output\_redis\_port) | The port number on which Redis is running. |
+| <a name="output_redis_slave_endpoint"></a> [redis\_slave\_endpoint](#output\_redis\_slave\_endpoint) | The endpoint for the Redis Slave Service, which is a secondary node in the Redis cluster responsible for handling read-only operations. |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 

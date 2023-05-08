@@ -10,41 +10,41 @@ variable "redis_config" {
     storage_class_name  = ""
     values_yaml         = ""
   }
-  description = "Redis configurations"
+  description = "Specify the configuration settings for Redis, including the name, environment, storage options, replication settings, and custom YAML values."
 }
 
 variable "chart_version" {
   type        = string
   default     = "16.13.2"
-  description = "Enter chart version of application"
+  description = "Version of the chart for the Redis application that will be deployed."
 }
 
 variable "app_version" {
   type        = string
   default     = "6.2.7-debian-11-r11"
-  description = "Enter app version of application"
+  description = "Version of the Redis application that will be deployed."
 }
 
 variable "namespace" {
   type        = string
   default     = "redis"
-  description = "Enter namespace name"
+  description = "Namespace where the Redis resources will be deployed."
 }
 
 variable "grafana_monitoring_enabled" {
   type        = bool
   default     = false
-  description = "Set true to deploy redis exporter to get metrics in grafana"
+  description = "Specify whether or not to deploy Redis exporter to collect Redis metrics for monitoring in Grafana."
 }
 
 variable "recovery_window_aws_secret" {
   default     = 0
   type        = number
-  description = "Number of days that AWS Secrets Manager waits before it can delete the secret. This value can be 0 to force deletion without recovery or range from 7 to 30 days."
+  description = "Number of days that AWS Secrets Manager will wait before it can delete the secret. The value can be 0 to force deletion without recovery, or a range from 7 to 30 days."
 }
 
 variable "create_namespace" {
   type        = string
-  description = "Set it to true to create given namespace"
+  description = "Specify whether or not to create the namespace if it does not already exist. Set it to true to create the namespace."
   default     = true
 }

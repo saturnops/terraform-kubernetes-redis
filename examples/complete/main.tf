@@ -1,11 +1,16 @@
 locals {
+  name        = "redis"
   region      = "us-east-2"
-  name        = "skaf"
   environment = "prod"
+  additional_tags = {
+    Owner      = "organization_name"
+    Expires    = "Never"
+    Department = "Engineering"
+  }
 }
 
 module "redis" {
-  source = "../../"
+  source = "https://github.com/sq-ia/terraform-kubernetes-redis.git"
   redis_config = {
     name                = local.name
     values_yaml         = file("./helm/values.yaml")

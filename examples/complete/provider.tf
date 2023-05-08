@@ -1,7 +1,9 @@
 provider "aws" {
   region = local.region
+  default_tags {
+    tags = local.additional_tags
+  }
 }
-
 
 data "aws_eks_cluster" "cluster" {
   name = ""

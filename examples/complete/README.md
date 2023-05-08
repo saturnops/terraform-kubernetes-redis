@@ -18,7 +18,7 @@ No requirements.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_redis"></a> [redis](#module\_redis) | ../../ | n/a |
+| <a name="module_redis"></a> [redis](#module\_redis) | https://github.com/sq-ia/terraform-kubernetes-redis.git | n/a |
 
 ## Resources
 
@@ -35,7 +35,7 @@ No inputs.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_redis_master_endpoint"></a> [redis\_master\_endpoint](#output\_redis\_master\_endpoint) | Redis master pod connection endpoint |
-| <a name="output_redis_port"></a> [redis\_port](#output\_redis\_port) | Redis port |
-| <a name="output_redis_slave_endpoint"></a> [redis\_slave\_endpoint](#output\_redis\_slave\_endpoint) | Redis slave pod connection endpoint |
+| <a name="output_redis_master_endpoint"></a> [redis\_master\_endpoint](#output\_redis\_master\_endpoint) | The endpoint for the Redis Master Service, which is the primary node in the Redis cluster responsible for handling read-write operations. |
+| <a name="output_redis_port"></a> [redis\_port](#output\_redis\_port) | The port number on which Redis is running. |
+| <a name="output_redis_slave_endpoint"></a> [redis\_slave\_endpoint](#output\_redis\_slave\_endpoint) | The endpoint for the Redis Slave Service, which is a secondary node in the Redis cluster responsible for handling read-only operations. |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
