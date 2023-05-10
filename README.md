@@ -7,11 +7,11 @@ This module allows users to customize the deployment by providing various input 
 <br><br>
 This module creates a Redis <strong>master</strong> and one or more Redis <strong>slaves</strong>, based on the specified architecture. It sets up Kubernetes services for the Redis master and slave deployments and exposes these services as <strong>endpoints</strong> for connecting to the Redis database. Users can retrieve these endpoints using the module's outputs. <br>
 
-## Supported Versions Table:
+## Supported Versions :
 
 |  Redis Helm Chart Version    |     K8s supported version   |  
 | :-----:                       |         :---                |
-| **16.13.2**                     |    1.23,1.24,1.25           |
+| **16.13.2**                     |    **1.23,1.24,1.25**           |
 
 ## Usage Example
 
