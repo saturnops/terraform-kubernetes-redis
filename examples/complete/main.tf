@@ -10,7 +10,7 @@ locals {
 }
 
 module "redis" {
-  source = "https://github.com/sq-ia/terraform-kubernetes-redis.git"
+  source = "saturnops/redis/kubernetes.git"
   redis_config = {
     name                = local.name
     values_yaml         = file("./helm/values.yaml")
