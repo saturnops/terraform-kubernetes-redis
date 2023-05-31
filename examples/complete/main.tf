@@ -18,7 +18,7 @@ module "redis" {
     architecture        = "replication"
     slave_volume_size   = "10Gi"
     master_volume_size  = "10Gi"
-    storage_class_name  = "gp2"
+    storage_class_name  = "gp3"
     slave_replica_count = 2
   }
   grafana_monitoring_enabled = true
