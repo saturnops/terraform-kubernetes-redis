@@ -17,7 +17,7 @@ This module creates a Redis <strong>master</strong> and one or more Redis <stron
 
 ```hcl
 module "redis" {
-  source                = "https://github.com/sq-ia/terraform-kubernetes-redis.git"
+  source                = "saturnops/redis/kubernetes"
   redis_config = {
     name                = "redis"
     values_yaml         = ""
@@ -25,7 +25,7 @@ module "redis" {
     architecture        = "replication"
     slave_volume_size   = "10Gi"
     master_volume_size  = "10Gi"
-    storage_class_name  = "gp2"
+    storage_class_name  = "gp3"
     slave_replica_count = 2
   }
   grafana_monitoring_enabled = true
@@ -33,10 +33,10 @@ module "redis" {
 }
 
 ```
-Refer [examples](https://github.com/sq-ia/terraform-kubernetes-redis/tree/main/examples/complete) for more details.
+Refer [examples](https://github.com/saturnops/terraform-kubernetes-redis/tree/main/examples/complete) for more details.
 
 ## IAM Permissions
-The required IAM permissions to create resources from this module can be found [here](https://github.com/sq-ia/terraform-kubernetes-redis/blob/main/IAM.md)
+The required IAM permissions to create resources from this module can be found [here](https://github.com/saturnops/terraform-kubernetes-redis/blob/main/IAM.md)
 
 ## Notes
   1. In order to enable the exporter, it is required to deploy Prometheus/Grafana first.

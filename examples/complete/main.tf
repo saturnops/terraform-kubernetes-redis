@@ -10,7 +10,7 @@ locals {
 }
 
 module "redis" {
-  source = "https://github.com/sq-ia/terraform-kubernetes-redis.git"
+  source = "saturnops/redis/kubernetes"
   redis_config = {
     name                = local.name
     values_yaml         = file("./helm/values.yaml")
@@ -18,7 +18,7 @@ module "redis" {
     architecture        = "replication"
     slave_volume_size   = "10Gi"
     master_volume_size  = "10Gi"
-    storage_class_name  = "gp2"
+    storage_class_name  = "gp3"
     slave_replica_count = 2
   }
   grafana_monitoring_enabled = true
