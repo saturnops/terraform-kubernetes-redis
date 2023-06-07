@@ -10,7 +10,7 @@ locals {
 }
 
 module "redis" {
-  source = "saturnops/redis/kubernetes.git"
+  source = "saturnops/redis/kubernetes"
   redis_config = {
     name                = local.name
     values_yaml         = file("./helm/values.yaml")
