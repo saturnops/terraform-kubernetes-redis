@@ -18,7 +18,7 @@ No requirements.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_redis"></a> [redis](#module\_redis) | saturnops/redis/kubernetes.git | n/a |
+| <a name="module_redis"></a> [redis](#module\_redis) | saturnops/redis/kubernetes | n/a |
 
 ## Resources
 
@@ -35,7 +35,6 @@ No inputs.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_redis_master_endpoint"></a> [redis\_master\_endpoint](#output\_redis\_master\_endpoint) | The endpoint for the Redis Master Service, which is the primary node in the Redis cluster responsible for handling read-write operations. |
-| <a name="output_redis_port"></a> [redis\_port](#output\_redis\_port) | The port number on which Redis is running. |
-| <a name="output_redis_slave_endpoint"></a> [redis\_slave\_endpoint](#output\_redis\_slave\_endpoint) | The endpoint for the Redis Slave Service, which is a secondary node in the Redis cluster responsible for handling read-only operations. |
+| <a name="output_redis_credential"></a> [redis\_credential](#output\_redis\_credential) | Redis credentials used for accessing the database. |
+| <a name="output_redis_endpoints"></a> [redis\_endpoints](#output\_redis\_endpoints) | Redis endpoints in the Kubernetes cluster. |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

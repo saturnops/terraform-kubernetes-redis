@@ -1,14 +1,9 @@
-output "redis_port" {
-  value       = "6379"
-  description = "The port number on which Redis is running."
+output "redis_endpoints" {
+  description = "Redis endpoints in the Kubernetes cluster."
+  value       = module.redis.redis_endpoints
 }
 
-output "redis_master_endpoint" {
-  value       = module.redis.redis_master_endpoint
-  description = "The endpoint for the Redis Master Service, which is the primary node in the Redis cluster responsible for handling read-write operations."
-}
-
-output "redis_slave_endpoint" {
-  value       = module.redis.redis_slave_endpoint
-  description = "The endpoint for the Redis Slave Service, which is a secondary node in the Redis cluster responsible for handling read-only operations."
+output "redis_credential" {
+  description = "Redis credentials used for accessing the database."
+  value       = local.store_password_to_secret_manager ? null : module.redis.redis_credential
 }
