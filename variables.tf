@@ -1,16 +1,17 @@
 variable "redis_config" {
   type = any
   default = {
-    name                = ""
-    environment         = ""
-    master_volume_size  = ""
-    architecture        = "replication"
-    slave_replica_count = 1
-    slave_volume_size   = ""
-    storage_class_name  = ""
-    values_yaml         = ""
+    name                             = ""
+    environment                      = ""
+    master_volume_size               = ""
+    architecture                     = "replication"
+    slave_replica_count              = 1
+    slave_volume_size                = ""
+    storage_class_name               = ""
+    store_password_to_secret_manager = ""
+    values_yaml                      = ""
   }
-  description = "Specify the configuration settings for Redis, including the name, environment, storage options, replication settings, and custom YAML values."
+  description = "Specify the configuration settings for Redis, including the name, environment, storage options, replication settings, store password to secret manager and custom YAML values."
 }
 
 variable "chart_version" {
@@ -47,4 +48,18 @@ variable "create_namespace" {
   type        = string
   description = "Specify whether or not to create the namespace if it does not already exist. Set it to true to create the namespace."
   default     = true
+}
+
+variable "custom_credentials_enabled" {
+  type        = bool
+  default     = false
+  description = "Specifies whether to enable custom credentials for Redis."
+}
+
+variable "custom_credentials_config" {
+  type = any
+  default = {
+    password = ""
+  }
+  description = "Specify the configuration settings for Redis to pass custom credentials during creation."
 }
