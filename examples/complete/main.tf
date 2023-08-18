@@ -22,6 +22,7 @@ module "redis" {
     storage_class_name               = "gp3"
     slave_replica_count              = 2
     store_password_to_secret_manager = local.store_password_to_secret_manager
+    secret_provider_type             = "aws"
   }
   grafana_monitoring_enabled = true
   recovery_window_aws_secret = 0

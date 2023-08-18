@@ -8,7 +8,7 @@ variable "redis_config" {
     slave_replica_count              = 1
     slave_volume_size                = ""
     storage_class_name               = ""
-    store_password_to_secret_manager = ""
+    store_password_to_secret_manager = true
     values_yaml                      = ""
   }
   description = "Specify the configuration settings for Redis, including the name, environment, storage options, replication settings, store password to secret manager and custom YAML values."
@@ -62,4 +62,10 @@ variable "custom_credentials_config" {
     password = ""
   }
   description = "Specify the configuration settings for Redis to pass custom credentials during creation."
+}
+
+variable "secret_provider_type" {
+  type        = string
+  default     = "aws"
+  description = "Choose where secrets will be stored (aws, gcp)"
 }
