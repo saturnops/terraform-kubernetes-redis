@@ -64,8 +64,7 @@ variable "custom_credentials_config" {
   description = "Specify the configuration settings for Redis to pass custom credentials during creation."
 }
 
-variable "secret_provider_type" {
-  type        = string
-  default     = "aws"
-  description = "Choose where secrets will be stored (aws, gcp)"
+variable "redis_password" {
+  type    = string
+  default = ""
 }
