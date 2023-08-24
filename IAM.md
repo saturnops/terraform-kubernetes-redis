@@ -1,4 +1,4 @@
-## IAM Permission
+## AWS IAM Permission
 
 The Policy required to deploy this module:
 ```hcl
@@ -32,4 +32,18 @@ The Policy required to deploy this module:
         }
     ]
 }
+```
+## Azure Role Permissions
+
+```hcl
+  permissions {
+    actions = [
+    "Microsoft.KeyVault/locations/deletedVaults/read",
+    "Microsoft.KeyVault/vaults/delete",
+    "Microsoft.KeyVault/vaults/read",
+    "Microsoft.KeyVault/vaults/write",
+    "Microsoft.Resources/subscriptions/providers/read",
+    "Microsoft.Resources/subscriptions/resourcegroups/read"]
+    not_actions = []
+  }
 ```
