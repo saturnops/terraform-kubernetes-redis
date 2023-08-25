@@ -15,7 +15,7 @@ locals {
 }
 
 module "aws" {
-  source                           = "saturnops/redis/kubernetes//provider/aws"
+  source                           = "saturnops/redis/kubernetes//modules/resources/aws"
   environment                      = local.environment
   name                             = local.name
   store_password_to_secret_manager = local.store_password_to_secret_manager
