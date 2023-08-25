@@ -15,7 +15,7 @@ locals {
 }
 
 module "gcp" {
-  source                           = "saturnops/redis/kubernetes//provider/gcp"
+  source                           = "saturnops/redis/kubernetes//modules/resources/gcp"
   project_id                       = ""
   environment                      = local.environment
   name                             = local.name
