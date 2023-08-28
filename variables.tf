@@ -5,6 +5,7 @@ variable "redis_config" {
     environment                      = ""
     master_volume_size               = ""
     architecture                     = "replication"
+    app_version                      = "6.2.7-debian-11-r11"
     slave_replica_count              = 1
     slave_volume_size                = ""
     storage_class_name               = ""
@@ -18,12 +19,6 @@ variable "chart_version" {
   type        = string
   default     = "16.13.2"
   description = "Version of the chart for the Redis application that will be deployed."
-}
-
-variable "app_version" {
-  type        = string
-  default     = "6.2.7-debian-11-r11"
-  description = "Version of the Redis application that will be deployed."
 }
 
 variable "namespace" {

@@ -7,8 +7,10 @@ locals {
     Expires    = "Never"
     Department = "Engineering"
   }
-  store_password_to_secret_manager = true
-  custom_credentials_enabled = true
+  create_namespace                 = false
+  namespace                        = ""
+  store_password_to_secret_manager = false
+  custom_credentials_enabled       = true
   custom_credentials_config = {
     password = "aajdhgduy3873683dh"
   }
@@ -24,21 +26,24 @@ module "aws" {
 }
 
 module "redis" {
-  source = "saturnops/redis/kubernetes"
+  source           = "saturnops/redis/kubernetes"
+  create_namespace = local.create_namespace
+  namespace        = local.namespace
   redis_config = {
     name                             = local.name
     values_yaml                      = file("./helm/values.yaml")
     environment                      = local.environment
+    app_version                      = "6.2.7-debian-11-r11"
     architecture                     = "replication"
     slave_volume_size                = "10Gi"
     master_volume_size               = "10Gi"
-    storage_class_name               = "gp3"
+    storage_class_name               = "gp2"
     slave_replica_count              = 2
     store_password_to_secret_manager = local.store_password_to_secret_manager
     secret_provider_type             = "aws"
   }
   grafana_monitoring_enabled = true
   custom_credentials_enabled = local.custom_credentials_enabled
-  custom_credentials_config = local.custom_credentials_config
-  redis_password = local.custom_credentials_enabled ? "" : module.aws.redis_password
+  custom_credentials_config  = local.custom_credentials_config
+  redis_password             = local.custom_credentials_enabled ? "" : module.aws.redis_password
 }
