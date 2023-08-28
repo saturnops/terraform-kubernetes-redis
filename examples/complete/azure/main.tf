@@ -7,8 +7,8 @@ locals {
     Expires    = "Never"
     Department = "Engineering"
   }
-  create_namespace                 = false
-  namespace                        = ""
+  create_namespace                 = true
+  namespace                        = "redis"
   store_password_to_secret_manager = true
   custom_credentials_enabled       = true
   custom_credentials_config = {
