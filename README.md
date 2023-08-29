@@ -51,7 +51,7 @@ module "redis" {
   namespace        = local.namespace
   redis_config = {
     name                             = local.name
-    values_yaml                      = file("./helm/values.yaml")
+    values_yaml                      = ""
     environment                      = local.environment
     app_version                      = "6.2.7-debian-11-r11"
     architecture                     = "replication"
