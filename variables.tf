@@ -5,10 +5,11 @@ variable "redis_config" {
     environment                      = ""
     master_volume_size               = ""
     architecture                     = "replication"
+    app_version                      = "6.2.7-debian-11-r11"
     slave_replica_count              = 1
     slave_volume_size                = ""
     storage_class_name               = ""
-    store_password_to_secret_manager = ""
+    store_password_to_secret_manager = true
     values_yaml                      = ""
   }
   description = "Specify the configuration settings for Redis, including the name, environment, storage options, replication settings, store password to secret manager and custom YAML values."
@@ -18,12 +19,6 @@ variable "chart_version" {
   type        = string
   default     = "16.13.2"
   description = "Version of the chart for the Redis application that will be deployed."
-}
-
-variable "app_version" {
-  type        = string
-  default     = "6.2.7-debian-11-r11"
-  description = "Version of the Redis application that will be deployed."
 }
 
 variable "namespace" {
@@ -62,4 +57,9 @@ variable "custom_credentials_config" {
     password = ""
   }
   description = "Specify the configuration settings for Redis to pass custom credentials during creation."
+}
+
+variable "redis_password" {
+  type    = string
+  default = ""
 }

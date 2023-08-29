@@ -11,6 +11,6 @@ output "redis_credential" {
   description = "Redis credentials used for accessing the database."
   value = var.redis_config.store_password_to_secret_manager ? null : {
     redis_username = "root",
-    redis_password = var.custom_credentials_enabled ? var.custom_credentials_config.password : nonsensitive(random_password.redis_password[0].result)
+    redis_password = var.custom_credentials_enabled ? var.custom_credentials_config.password : var.redis_password
   }
 }
