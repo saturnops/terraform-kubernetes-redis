@@ -7,6 +7,8 @@ locals {
     Expires    = "Never"
     Department = "Engineering"
   }
+  create_namespace                 = true
+  namespace                        = "redis"
   store_password_to_secret_manager = true
   custom_credentials_enabled       = true
   custom_credentials_config = {
@@ -26,11 +28,14 @@ module "azure" {
 }
 
 module "redis" {
-  source = "saturnops/redis/kubernetes"
+  source           = "saturnops/redis/kubernetes"
+  create_namespace = local.create_namespace
+  namespace        = local.namespace
   redis_config = {
     name                             = local.name
     values_yaml                      = file("./helm/values.yaml")
     environment                      = local.environment
+    app_version                      = "6.2.7-debian-11-r11"
     architecture                     = "replication"
     slave_volume_size                = "10Gi"
     master_volume_size               = "10Gi"
