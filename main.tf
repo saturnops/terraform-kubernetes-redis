@@ -12,7 +12,7 @@ resource "helm_release" "redis" {
   chart      = "redis"
   version    = var.chart_version
   timeout    = 600
-  namespace  = var.create_namespace ? var.namespace : "default"
+  namespace  = var.namespace
   repository = "https://charts.bitnami.com/bitnami"
   values = [
     templatefile("${path.module}/helm/values/values.yaml", {
@@ -24,7 +24,7 @@ resource "helm_release" "redis" {
       storage_class_name        = var.redis_config.storage_class_name,
       redis_exporter_enabled    = var.grafana_monitoring_enabled,
       redis_master_volume_size  = var.redis_config.master_volume_size
-      service_monitor_namespace = var.create_namespace ? var.namespace : "default"
+      service_monitor_namespace = var.namespace
     }),
     var.redis_config.values_yaml
   ]
