@@ -23,7 +23,7 @@ resource "helm_release" "redis" {
       slave_replicacount        = var.redis_config.slave_replica_count,
       storage_class_name        = var.redis_config.storage_class_name,
       redis_exporter_enabled    = var.grafana_monitoring_enabled,
-      redis_master_volume_size  = var.redis_config.master_volume_size
+      redis_master_volume_size  = var.redis_config.master_volume_size,
       service_monitor_namespace = var.namespace
     }),
     var.redis_config.values_yaml
