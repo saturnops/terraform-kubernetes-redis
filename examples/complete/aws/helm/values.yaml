@@ -19,3 +19,6 @@ replica:
                       operator: In
                       values:
                       - "true"
+
+redis:
+  maxclients: 2000
