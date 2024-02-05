@@ -4,7 +4,7 @@ master:
             requiredDuringSchedulingIgnoredDuringExecution:
                 nodeSelectorTerms:
                 - matchExpressions:
-                    - key: "Addons-Services"
+                    - key: "Infra-Services"
                       operator: In
                       values:
                       - "true"
@@ -15,7 +15,7 @@ replica:
             requiredDuringSchedulingIgnoredDuringExecution:
                 nodeSelectorTerms:
                 - matchExpressions:
-                    - key: "Addons-Services"
+                    - key: "Infra-Services"
                       operator: In
                       values:
                       - "true"
