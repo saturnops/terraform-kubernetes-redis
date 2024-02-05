@@ -19,3 +19,11 @@ replica:
                       operator: In
                       values:
                       - "true"
+
+
+commonConfiguration: |-
+  # Enable AOF https://redis.io/topics/persistence#append-only-file
+  appendonly yes
+  maxclients 2000  
+  # Disable RDB persistence, AOF persistence already enabled.
+  save ""
