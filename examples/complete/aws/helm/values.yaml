@@ -4,7 +4,7 @@ master:
             requiredDuringSchedulingIgnoredDuringExecution:
                 nodeSelectorTerms:
                 - matchExpressions:
-                    - key: "Infra-Services"
+                    - key: "Addons-Services"
                       operator: In
                       values:
                       - "true"
@@ -15,10 +15,15 @@ replica:
             requiredDuringSchedulingIgnoredDuringExecution:
                 nodeSelectorTerms:
                 - matchExpressions:
-                    - key: "Infra-Services"
+                    - key: "Addons-Services"
                       operator: In
                       values:
                       - "true"
 
-redis:
-  maxclients: 2000
+
+commonConfiguration: |-
+  # Enable AOF https://redis.io/topics/persistence#append-only-file
+  appendonly yes
+  maxclients 2000  
+  # Disable RDB persistence, AOF persistence already enabled.
+  save ""
